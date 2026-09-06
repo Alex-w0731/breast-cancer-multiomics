@@ -1,0 +1,37 @@
+name: Scientific workflow checks
+on:
+  push:
+    paths-ignore:
+      - 'docs/**'
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      MPLBACKEND: Agg
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      NUMBA_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install '.[dev,workflow]'
+      - run: ruff check src tests scripts
+      - run: pytest -q
+      - run: bcflow demo-data --config config/demo.yaml
+      - run: snakemake -s workflow/Snakefile --configfile config/demo.yaml --cores 2
+      - uses: actions/upload-artifact@v4
+        with:
+          name: synthetic-demo-figures-and-audit
+          path: |
+            results/demo/figures/
+            results/demo/audit/
+            results/demo/*status.json
+          retention-days: 14

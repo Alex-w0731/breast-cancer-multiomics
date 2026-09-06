@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "Cite this software release and the original datasets/methods actually used."
+title: "BCFlow: Patient-aware breast cancer multiomics analysis workflow"
+type: software
+version: 0.1.0
+date-released: 2026-09-06
+repository-code: "https://github.com/Alex-w0731/breast-cancer-multiomics"
+license: MIT
+authors:
+  - name: "BCFlow contributors"
+abstract: "A reproducible research workflow for scRNA-seq, spatial and bulk RNA-seq, with synthetic software validation."
+

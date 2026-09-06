@@ -1,0 +1,665 @@
+[
+  {
+    "id": "F01_workflow",
+    "title": "Three-modality analysis design",
+    "subtitle": "Proposed study structure; donor identity is preserved across every assay",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "docs/experimental_design_zh.md"
+    ],
+    "files": [
+      "F01_workflow.png",
+      "F01_workflow.pdf",
+      "F01_workflow.svg"
+    ]
+  },
+  {
+    "id": "F02_qc_total_counts",
+    "title": "Single-cell QC: Total UMI counts / cell",
+    "subtitle": "1,920 input cells before filtering; counts are untransformed",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "singlecell/cell_qc.csv"
+    ],
+    "files": [
+      "F02_qc_total_counts.png",
+      "F02_qc_total_counts.pdf",
+      "F02_qc_total_counts.svg"
+    ]
+  },
+  {
+    "id": "F03_qc_n_genes_by_counts",
+    "title": "Single-cell QC: Detected genes / cell",
+    "subtitle": "1,920 input cells before filtering; counts are untransformed",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "singlecell/cell_qc.csv"
+    ],
+    "files": [
+      "F03_qc_n_genes_by_counts.png",
+      "F03_qc_n_genes_by_counts.pdf",
+      "F03_qc_n_genes_by_counts.svg"
+    ]
+  },
+  {
+    "id": "F04_qc_pct_counts_mt",
+    "title": "Single-cell QC: Mitochondrial counts (%)",
+    "subtitle": "1,920 input cells before filtering; counts are untransformed",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "singlecell/cell_qc.csv"
+    ],
+    "files": [
+      "F04_qc_pct_counts_mt.png",
+      "F04_qc_pct_counts_mt.pdf",
+      "F04_qc_pct_counts_mt.svg"
+    ]
+  },
+  {
+    "id": "F05_complexity",
+    "title": "Library complexity and mitochondrial fraction",
+    "subtitle": "1,920 input cells; each point is one cell",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "singlecell/cell_qc.csv"
+    ],
+    "files": [
+      "F05_complexity.png",
+      "F05_complexity.pdf",
+      "F05_complexity.svg"
+    ]
+  },
+  {
+    "id": "F06_retention",
+    "title": "Cell retention by capture",
+    "subtitle": "Input and retained cells; capture is a technical unit",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "singlecell/cell_qc.csv"
+    ],
+    "files": [
+      "F06_retention.png",
+      "F06_retention.pdf",
+      "F06_retention.svg"
+    ]
+  },
+  {
+    "id": "F07_umap_cell_type",
+    "title": "Single-cell UMAP by cell_type",
+    "subtitle": "1,920 retained cells; labels are descriptive",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "singlecell/processed.h5ad"
+    ],
+    "files": [
+      "F07_umap_cell_type.png",
+      "F07_umap_cell_type.pdf",
+      "F07_umap_cell_type.svg"
+    ]
+  },
+  {
+    "id": "F08_umap_condition",
+    "title": "Single-cell UMAP by condition",
+    "subtitle": "1,920 retained cells; labels are descriptive",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "singlecell/processed.h5ad"
+    ],
+    "files": [
+      "F08_umap_condition.png",
+      "F08_umap_condition.pdf",
+      "F08_umap_condition.svg"
+    ]
+  },
+  {
+    "id": "F09_umap_batch",
+    "title": "Single-cell UMAP by batch",
+    "subtitle": "1,920 retained cells; labels are descriptive",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "singlecell/processed.h5ad"
+    ],
+    "files": [
+      "F09_umap_batch.png",
+      "F09_umap_batch.pdf",
+      "F09_umap_batch.svg"
+    ]
+  },
+  {
+    "id": "F10_umap_leiden",
+    "title": "Single-cell UMAP by leiden",
+    "subtitle": "1,920 retained cells; labels are descriptive",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "singlecell/processed.h5ad"
+    ],
+    "files": [
+      "F10_umap_leiden.png",
+      "F10_umap_leiden.pdf",
+      "F10_umap_leiden.svg"
+    ]
+  },
+  {
+    "id": "F11_pca_variance",
+    "title": "PCA variance explained",
+    "subtitle": "HVG-based uncorrected embedding; inspect batch effects separately",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "singlecell/processed.h5ad"
+    ],
+    "files": [
+      "F11_pca_variance.png",
+      "F11_pca_variance.pdf",
+      "F11_pca_variance.svg"
+    ]
+  },
+  {
+    "id": "F12_marker_dotplot",
+    "title": "Annotation marker expression",
+    "subtitle": "Dot area scales with detection fraction; marker support does not establish malignancy",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "singlecell/processed.h5ad"
+    ],
+    "files": [
+      "F12_marker_dotplot.png",
+      "F12_marker_dotplot.pdf",
+      "F12_marker_dotplot.svg"
+    ]
+  },
+  {
+    "id": "F13_composition",
+    "title": "Cell composition by patient",
+    "subtitle": "Denominator: all retained cells from each patient",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "singlecell/patient_composition.csv"
+    ],
+    "files": [
+      "F13_composition.png",
+      "F13_composition.pdf",
+      "F13_composition.svg"
+    ]
+  },
+  {
+    "id": "F14_composition_matrix",
+    "title": "Patient-by-cell-type composition",
+    "subtitle": "Relative abundance reflects capture and dissociation biases",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "singlecell/patient_composition.csv"
+    ],
+    "files": [
+      "F14_composition_matrix.png",
+      "F14_composition_matrix.pdf",
+      "F14_composition_matrix.svg"
+    ]
+  },
+  {
+    "id": "F15_program_ECM",
+    "title": "Patient-level ECM marker score",
+    "subtitle": "One point per patient and type; scores are descriptive within this assay",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "singlecell/patient_programs.csv"
+    ],
+    "files": [
+      "F15_program_ECM.png",
+      "F15_program_ECM.pdf",
+      "F15_program_ECM.svg"
+    ]
+  },
+  {
+    "id": "F16_program_Cytotoxic",
+    "title": "Patient-level Cytotoxic marker score",
+    "subtitle": "One point per patient and type; scores are descriptive within this assay",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "singlecell/patient_programs.csv"
+    ],
+    "files": [
+      "F16_program_Cytotoxic.png",
+      "F16_program_Cytotoxic.pdf",
+      "F16_program_Cytotoxic.svg"
+    ]
+  },
+  {
+    "id": "F17_program_IFN_response",
+    "title": "Patient-level IFN_response marker score",
+    "subtitle": "One point per patient and type; scores are descriptive within this assay",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "singlecell/patient_programs.csv"
+    ],
+    "files": [
+      "F17_program_IFN_response.png",
+      "F17_program_IFN_response.pdf",
+      "F17_program_IFN_response.svg"
+    ]
+  },
+  {
+    "id": "F18_program_Proliferation",
+    "title": "Patient-level Proliferation marker score",
+    "subtitle": "One point per patient and type; scores are descriptive within this assay",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "singlecell/patient_programs.csv"
+    ],
+    "files": [
+      "F18_program_Proliferation.png",
+      "F18_program_Proliferation.pdf",
+      "F18_program_Proliferation.svg"
+    ]
+  },
+  {
+    "id": "F19_pseudobulk_Endothelial",
+    "title": "Patient-pseudobulk DE: Endothelial",
+    "subtitle": "664 genes with finite adjusted p; q_global controls testing family",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "pseudobulk/differential.csv",
+      "pseudobulk/metadata.csv"
+    ],
+    "files": [
+      "F19_pseudobulk_Endothelial.png",
+      "F19_pseudobulk_Endothelial.pdf",
+      "F19_pseudobulk_Endothelial.svg"
+    ]
+  },
+  {
+    "id": "F20_pseudobulk_Epithelial",
+    "title": "Patient-pseudobulk DE: Epithelial",
+    "subtitle": "785 genes with finite adjusted p; q_global controls testing family",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "pseudobulk/differential.csv",
+      "pseudobulk/metadata.csv"
+    ],
+    "files": [
+      "F20_pseudobulk_Epithelial.png",
+      "F20_pseudobulk_Epithelial.pdf",
+      "F20_pseudobulk_Epithelial.svg"
+    ]
+  },
+  {
+    "id": "F21_pseudobulk_Fibroblast",
+    "title": "Patient-pseudobulk DE: Fibroblast",
+    "subtitle": "754 genes with finite adjusted p; q_global controls testing family",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "pseudobulk/differential.csv",
+      "pseudobulk/metadata.csv"
+    ],
+    "files": [
+      "F21_pseudobulk_Fibroblast.png",
+      "F21_pseudobulk_Fibroblast.pdf",
+      "F21_pseudobulk_Fibroblast.svg"
+    ]
+  },
+  {
+    "id": "F22_pseudobulk_Myeloid",
+    "title": "Patient-pseudobulk DE: Myeloid",
+    "subtitle": "759 genes with finite adjusted p; q_global controls testing family",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "pseudobulk/differential.csv",
+      "pseudobulk/metadata.csv"
+    ],
+    "files": [
+      "F22_pseudobulk_Myeloid.png",
+      "F22_pseudobulk_Myeloid.pdf",
+      "F22_pseudobulk_Myeloid.svg"
+    ]
+  },
+  {
+    "id": "F23_pseudobulk_T_cell",
+    "title": "Patient-pseudobulk DE: T_cell",
+    "subtitle": "770 genes with finite adjusted p; q_global controls testing family",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "pseudobulk/differential.csv",
+      "pseudobulk/metadata.csv"
+    ],
+    "files": [
+      "F23_pseudobulk_T_cell.png",
+      "F23_pseudobulk_T_cell.pdf",
+      "F23_pseudobulk_T_cell.svg"
+    ]
+  },
+  {
+    "id": "B01_bulk_volcano",
+    "title": "Bulk RNA-seq differential expression",
+    "subtitle": "799 genes with finite adjusted p; padj controls testing family",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "bulk/differential.csv"
+    ],
+    "files": [
+      "B01_bulk_volcano.png",
+      "B01_bulk_volcano.pdf",
+      "B01_bulk_volcano.svg"
+    ]
+  },
+  {
+    "id": "B02_bulk_MA",
+    "title": "Bulk RNA-seq mean-expression versus effect",
+    "subtitle": "Orange: BH padj < .05; effect estimates are unshrunk",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "bulk/differential.csv"
+    ],
+    "files": [
+      "B02_bulk_MA.png",
+      "B02_bulk_MA.pdf",
+      "B02_bulk_MA.svg"
+    ]
+  },
+  {
+    "id": "B03_bulk_PCA",
+    "title": "Bulk sample PCA",
+    "subtitle": "12 independent patients; log1p size-factor-normalized counts",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "bulk/normalized_counts.csv",
+      "bulk/metadata.csv"
+    ],
+    "files": [
+      "B03_bulk_PCA.png",
+      "B03_bulk_PCA.pdf",
+      "B03_bulk_PCA.svg"
+    ]
+  },
+  {
+    "id": "B04_bulk_correlation",
+    "title": "Bulk sample expression correlation",
+    "subtitle": "Spearman correlation across expressed genes; descriptive QC",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "bulk/normalized_counts.csv"
+    ],
+    "files": [
+      "B04_bulk_correlation.png",
+      "B04_bulk_correlation.pdf",
+      "B04_bulk_correlation.svg"
+    ]
+  },
+  {
+    "id": "B05_bulk_variable_genes",
+    "title": "Most variable bulk expression features",
+    "subtitle": "25 genes chosen by variance, not by favorable differential-expression p values",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "bulk/normalized_counts.csv"
+    ],
+    "files": [
+      "B05_bulk_variable_genes.png",
+      "B05_bulk_variable_genes.pdf",
+      "B05_bulk_variable_genes.svg"
+    ]
+  },
+  {
+    "id": "S01_UMI_counts",
+    "title": "Spatial map: UMI counts",
+    "subtitle": "Section SYN_P00_s1; 64 retained spots; coordinate-only map",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "spatial/processed.h5ad",
+      "spatial/relative_abundance.csv"
+    ],
+    "files": [
+      "S01_UMI_counts.png",
+      "S01_UMI_counts.pdf",
+      "S01_UMI_counts.svg"
+    ]
+  },
+  {
+    "id": "S02_Detected_genes",
+    "title": "Spatial map: Detected genes",
+    "subtitle": "Section SYN_P00_s1; 64 retained spots; coordinate-only map",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "spatial/processed.h5ad",
+      "spatial/relative_abundance.csv"
+    ],
+    "files": [
+      "S02_Detected_genes.png",
+      "S02_Detected_genes.pdf",
+      "S02_Detected_genes.svg"
+    ]
+  },
+  {
+    "id": "S03_Mitochondrial_pct",
+    "title": "Spatial map: Mitochondrial pct",
+    "subtitle": "Section SYN_P00_s1; 64 retained spots; coordinate-only map",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "spatial/processed.h5ad",
+      "spatial/relative_abundance.csv"
+    ],
+    "files": [
+      "S03_Mitochondrial_pct.png",
+      "S03_Mitochondrial_pct.pdf",
+      "S03_Mitochondrial_pct.svg"
+    ]
+  },
+  {
+    "id": "S04_ECM",
+    "title": "Spatial map: ECM",
+    "subtitle": "Section SYN_P00_s1; 64 retained spots; coordinate-only map",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "spatial/processed.h5ad",
+      "spatial/relative_abundance.csv"
+    ],
+    "files": [
+      "S04_ECM.png",
+      "S04_ECM.pdf",
+      "S04_ECM.svg"
+    ]
+  },
+  {
+    "id": "S05_Cytotoxic",
+    "title": "Spatial map: Cytotoxic",
+    "subtitle": "Section SYN_P00_s1; 64 retained spots; coordinate-only map",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "spatial/processed.h5ad",
+      "spatial/relative_abundance.csv"
+    ],
+    "files": [
+      "S05_Cytotoxic.png",
+      "S05_Cytotoxic.pdf",
+      "S05_Cytotoxic.svg"
+    ]
+  },
+  {
+    "id": "S06_IFN_response",
+    "title": "Spatial map: IFN response",
+    "subtitle": "Section SYN_P00_s1; 64 retained spots; coordinate-only map",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "spatial/processed.h5ad",
+      "spatial/relative_abundance.csv"
+    ],
+    "files": [
+      "S06_IFN_response.png",
+      "S06_IFN_response.pdf",
+      "S06_IFN_response.svg"
+    ]
+  },
+  {
+    "id": "S07_Proliferation",
+    "title": "Spatial map: Proliferation",
+    "subtitle": "Section SYN_P00_s1; 64 retained spots; coordinate-only map",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "spatial/processed.h5ad",
+      "spatial/relative_abundance.csv"
+    ],
+    "files": [
+      "S07_Proliferation.png",
+      "S07_Proliferation.pdf",
+      "S07_Proliferation.svg"
+    ]
+  },
+  {
+    "id": "S08_Mixture_Endothelial",
+    "title": "Spatial map: Mixture Endothelial",
+    "subtitle": "Section SYN_P00_s1; 64 retained spots; coordinate-only map",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "spatial/processed.h5ad",
+      "spatial/relative_abundance.csv"
+    ],
+    "files": [
+      "S08_Mixture_Endothelial.png",
+      "S08_Mixture_Endothelial.pdf",
+      "S08_Mixture_Endothelial.svg"
+    ]
+  },
+  {
+    "id": "S09_Mixture_Epithelial",
+    "title": "Spatial map: Mixture Epithelial",
+    "subtitle": "Section SYN_P00_s1; 64 retained spots; coordinate-only map",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "spatial/processed.h5ad",
+      "spatial/relative_abundance.csv"
+    ],
+    "files": [
+      "S09_Mixture_Epithelial.png",
+      "S09_Mixture_Epithelial.pdf",
+      "S09_Mixture_Epithelial.svg"
+    ]
+  },
+  {
+    "id": "S10_Mixture_Fibroblast",
+    "title": "Spatial map: Mixture Fibroblast",
+    "subtitle": "Section SYN_P00_s1; 64 retained spots; coordinate-only map",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "spatial/processed.h5ad",
+      "spatial/relative_abundance.csv"
+    ],
+    "files": [
+      "S10_Mixture_Fibroblast.png",
+      "S10_Mixture_Fibroblast.pdf",
+      "S10_Mixture_Fibroblast.svg"
+    ]
+  },
+  {
+    "id": "S11_Mixture_Myeloid",
+    "title": "Spatial map: Mixture Myeloid",
+    "subtitle": "Section SYN_P00_s1; 64 retained spots; coordinate-only map",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "spatial/processed.h5ad",
+      "spatial/relative_abundance.csv"
+    ],
+    "files": [
+      "S11_Mixture_Myeloid.png",
+      "S11_Mixture_Myeloid.pdf",
+      "S11_Mixture_Myeloid.svg"
+    ]
+  },
+  {
+    "id": "S12_Mixture_T_cell",
+    "title": "Spatial map: Mixture T cell",
+    "subtitle": "Section SYN_P00_s1; 64 retained spots; coordinate-only map",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "spatial/processed.h5ad",
+      "spatial/relative_abundance.csv"
+    ],
+    "files": [
+      "S12_Mixture_T_cell.png",
+      "S12_Mixture_T_cell.pdf",
+      "S12_Mixture_T_cell.svg"
+    ]
+  },
+  {
+    "id": "S20_moran",
+    "title": "Section-level spatial autocorrelation",
+    "subtitle": "Each graph is constructed within one section; inferential details are in moran.csv",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "spatial/moran.csv"
+    ],
+    "files": [
+      "S20_moran.png",
+      "S20_moran.pdf",
+      "S20_moran.svg"
+    ]
+  },
+  {
+    "id": "S21_patient_compartments",
+    "title": "T-cell mixture by tissue compartment",
+    "subtitle": "12 paired patients; sections averaged equally within each patient",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "integration/patient_tcell_compartments.csv"
+    ],
+    "files": [
+      "S21_patient_compartments.png",
+      "S21_patient_compartments.pdf",
+      "S21_patient_compartments.svg"
+    ]
+  },
+  {
+    "id": "S22_patient_uncertainty",
+    "title": "Patient-level compartment differences",
+    "subtitle": "95% percentile bootstrap intervals; resampling unit is patient, not spot",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "integration/spatial_patient_summary.json",
+      "integration/patient_tcell_compartments.csv"
+    ],
+    "files": [
+      "S22_patient_uncertainty.png",
+      "S22_patient_uncertainty.pdf",
+      "S22_patient_uncertainty.svg"
+    ]
+  },
+  {
+    "id": "I01_effect_concordance",
+    "title": "Condition effects across modalities",
+    "subtitle": "754 shared gene IDs; agreement does not separate composition from regulation",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "integration/cross_modality_effects.csv"
+    ],
+    "files": [
+      "I01_effect_concordance.png",
+      "I01_effect_concordance.pdf",
+      "I01_effect_concordance.svg"
+    ]
+  },
+  {
+    "id": "I02_ECM_effects",
+    "title": "ECM marker effects across cell types",
+    "subtitle": "Prespecified marker set; gene-level statistics remain in the full source table",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "pseudobulk/differential.csv"
+    ],
+    "files": [
+      "I02_ECM_effects.png",
+      "I02_ECM_effects.pdf",
+      "I02_ECM_effects.svg"
+    ]
+  },
+  {
+    "id": "D01_power_sensitivity",
+    "title": "Patient sample-size sensitivity",
+    "subtitle": "Hypothetical two-sample t test; alpha=.05; no dropout, multiplicity or batch penalty",
+    "status": "SYNTHETIC DATA - SOFTWARE DEMO ONLY",
+    "sources": [
+      "docs/experimental_design_zh.md"
+    ],
+    "files": [
+      "D01_power_sensitivity.png",
+      "D01_power_sensitivity.pdf",
+      "D01_power_sensitivity.svg"
+    ]
+  }
+]

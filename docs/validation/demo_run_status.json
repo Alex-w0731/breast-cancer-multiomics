@@ -1,0 +1,15 @@
+{
+  "status": "completed",
+  "mode": "demo",
+  "command": "run",
+  "config_path": "config\\demo.yaml",
+  "stages": [
+    "demo-data",
+    "singlecell",
+    "pseudobulk",
+    "bulk",
+    "spatial",
+    "integrate",
+    "figures"
+  ]
+}

@@ -1,0 +1,79 @@
+"""Run from repository root. Config and source changes invalidate downstream work."""
+import sys
+from pathlib import Path
+configfile: "config/production.yaml"
+
+CFG = workflow.overwrite_configfiles[0] if workflow.overwrite_configfiles else "config/production.yaml"
+OUT = config["output_dir"]
+INP = config["input_dir"]
+PYTHON = sys.executable
+CODE = sorted(str(p) for p in Path("src/bcflow").glob("*.py"))
+
+rule all:
+    input: f"{OUT}/figures/figure_manifest.json"
+
+rule singlecell:
+    input: counts=f"{INP}/singlecell.h5ad", cfg=CFG, code=CODE
+    output:
+        adata=f"{OUT}/singlecell/processed.h5ad",
+        qc=f"{OUT}/singlecell/cell_qc.csv",
+        composition=f"{OUT}/singlecell/patient_composition.csv",
+        programs=f"{OUT}/singlecell/patient_programs.csv"
+    threads: config["analysis"]["threads"]
+    resources: mem_mb=64000
+    shell: "{PYTHON:q} -m bcflow.cli singlecell --config {CFG:q}"
+
+rule pseudobulk:
+    input: counts=f"{OUT}/singlecell/processed.h5ad", cfg=CFG, code=CODE
+    output: de=f"{OUT}/pseudobulk/differential.csv", metadata=f"{OUT}/pseudobulk/metadata.csv"
+    threads: config["analysis"]["threads"]
+    resources: mem_mb=16000
+    shell: "{PYTHON:q} -m bcflow.cli pseudobulk --config {CFG:q}"
+
+rule bulk:
+    input:
+        counts=f"{INP}/bulk_counts.csv", metadata=f"{INP}/bulk_metadata.csv",
+        genes=f"{INP}/bulk_genes.csv", cfg=CFG, code=CODE
+    output:
+        de=f"{OUT}/bulk/differential.csv",
+        normalized=f"{OUT}/bulk/normalized_counts.csv", metadata=f"{OUT}/bulk/metadata.csv"
+    threads: config["analysis"]["threads"]
+    resources: mem_mb=16000
+    shell: "{PYTHON:q} -m bcflow.cli bulk --config {CFG:q}"
+
+rule spatial:
+    input:
+        ref=f"{OUT}/singlecell/processed.h5ad",
+        spatial=f"{INP}/spatial.h5ad",
+        cfg=CFG, code=CODE,
+        abundance=([config["analysis"]["abundance_file"]]
+                   if config["analysis"]["deconvolution"] == "external" else [])
+    output:
+        adata=f"{OUT}/spatial/processed.h5ad", compartments=f"{OUT}/spatial/section_compartments.csv",
+        abundance=f"{OUT}/spatial/relative_abundance.csv", moran=f"{OUT}/spatial/moran.csv"
+    resources: mem_mb=64000
+    shell: "{PYTHON:q} -m bcflow.cli spatial --config {CFG:q}"
+
+rule integrate:
+    input:
+        sc=f"{OUT}/pseudobulk/differential.csv", bulk=f"{OUT}/bulk/differential.csv",
+        spatial=f"{OUT}/spatial/section_compartments.csv", cfg=CFG, code=CODE
+    output:
+        effects=f"{OUT}/integration/cross_modality_effects.csv",
+        summary=f"{OUT}/integration/spatial_patient_summary.json"
+    shell: "{PYTHON:q} -m bcflow.cli integrate --config {CFG:q}"
+
+rule figures:
+    input:
+        effects=f"{OUT}/integration/cross_modality_effects.csv",
+        summary=f"{OUT}/integration/spatial_patient_summary.json",
+        sc=f"{OUT}/singlecell/processed.h5ad", spatial=f"{OUT}/spatial/processed.h5ad",
+        qc=f"{OUT}/singlecell/cell_qc.csv", composition=f"{OUT}/singlecell/patient_composition.csv",
+        programs=f"{OUT}/singlecell/patient_programs.csv",
+        pb=f"{OUT}/pseudobulk/differential.csv", pbmeta=f"{OUT}/pseudobulk/metadata.csv",
+        bulk=f"{OUT}/bulk/differential.csv", norm=f"{OUT}/bulk/normalized_counts.csv",
+        bulkmeta=f"{OUT}/bulk/metadata.csv", abundance=f"{OUT}/spatial/relative_abundance.csv",
+        moran=f"{OUT}/spatial/moran.csv", cfg=CFG, code=CODE
+    output: f"{OUT}/figures/figure_manifest.json"
+    resources: mem_mb=16000
+    shell: "{PYTHON:q} -m bcflow.cli figures --config {CFG:q}"

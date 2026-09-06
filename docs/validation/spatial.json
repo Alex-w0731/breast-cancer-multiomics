@@ -1,0 +1,81 @@
+{
+  "stage": "spatial",
+  "utc": "2026-09-05T21:09:04.715809+00:00",
+  "mode": "demo",
+  "seed": 7301,
+  "config": {
+    "mode": "demo",
+    "seed": 7301,
+    "input_dir": "data/demo",
+    "output_dir": "results/demo",
+    "contrast": [
+      "condition",
+      "TNBC",
+      "HRpos_HER2neg"
+    ],
+    "design": "~ batch + condition",
+    "qc": {
+      "min_genes": 50,
+      "max_genes": 1500,
+      "max_mt_pct": 25,
+      "min_cells_per_gene": 3,
+      "min_cells_per_sample": 30,
+      "doublets": false,
+      "min_spot_genes": 50,
+      "max_spot_mt_pct": 30
+    },
+    "analysis": {
+      "hvg": 500,
+      "pcs": 20,
+      "neighbors": 15,
+      "resolution": 0.5,
+      "min_cells_pseudobulk": 10,
+      "min_donors_per_group": 3,
+      "min_count": 10,
+      "min_samples_gene": 3,
+      "min_shared_genes": 100,
+      "spatial_k": 6,
+      "spatial_permutations": 199,
+      "bootstrap_replicates": 500,
+      "deconvolution": "nnls",
+      "min_signature_coverage": 0.6,
+      "allow_unreviewed_annotations": true,
+      "allow_missing_pathology": true,
+      "threads": 1
+    }
+  },
+  "python": "3.12.14",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "packages": {
+    "bcflow": "0.1.0",
+    "numpy": "2.2.6",
+    "pandas": "2.2.3",
+    "scanpy": "1.11.2",
+    "anndata": "0.11.4",
+    "pydeseq2": "0.5.2",
+    "scipy": "1.15.3"
+  },
+  "inputs": {
+    "data\\demo\\spatial.h5ad": "f1ee9d29193e2957b8adf73cdc73f1b104c9d7576978c0e0df06caf140b00f5c",
+    "results\\demo\\singlecell\\processed.h5ad": "84be8746e5f15be307b29b5fb814955f2f7a155a4a984dec299bf57392e27017"
+  },
+  "details": {
+    "sections": 12,
+    "patients": 12,
+    "mapping_method": "exploratory_NNLS_RNA_weights",
+    "moran_null": "exchangeable spot labels within section; exploratory",
+    "uncertainty": "patient bootstrap downstream; no spot-level independence assumption"
+  },
+  "source_sha256": {
+    "cli.py": "6b416bb2ffcc0323cb8486ec43fe8a9cbed3bd0b8da9d9a5d896c636e1f3dedb",
+    "core.py": "aa5a300eb9359e64a28758fbd97e3dfc4d5383e664b6a604f1b22fd3b806ae20",
+    "demo.py": "1228ce280e84aa083a7cf39f35d3e452491935615b58d84e6860f39a50bcc979",
+    "differential.py": "dad1ea708d62331e1db4caa0a89540fbe97020b3fa4904db600cf39b27441ad2",
+    "download.py": "ed82cc0a2b83acecce9ed8b8935e29eedbf262c1380559fb91b6402f0e0887c4",
+    "figures.py": "bd7f29c0473ffcc40fa0ca1b1ae92abaa01a21fe07846f574961b0b241595a86",
+    "integration.py": "9b39d4bf5f4e71d8d79c3c68d6853ca3e50e71f9ee100ed217c6b9ae2348769c",
+    "singlecell.py": "396182bb3bbd82c1f1553cd930584e3643ae707373e746b4b60fe2cce5239f6b",
+    "spatial.py": "c07943ea5ff81fef6b21eef7ef594683a30a7ded9ec75b68dd1f070d3cf4259b",
+    "__init__.py": "d2f4e52c0dd66dbbe239aa1d4d018666a7296ed95a2c9b4b511430c80e4a793a"
+  }
+}

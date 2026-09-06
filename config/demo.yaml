@@ -1,0 +1,34 @@
+mode: demo
+seed: 7301
+input_dir: data/demo
+output_dir: results/demo
+contrast: [condition, TNBC, HRpos_HER2neg]
+design: "~ batch + condition"
+qc:
+  min_genes: 50
+  max_genes: 1500
+  max_mt_pct: 25
+  min_cells_per_gene: 3
+  min_cells_per_sample: 30
+  doublets: false
+  min_spot_genes: 50
+  max_spot_mt_pct: 30
+analysis:
+  hvg: 500
+  pcs: 20
+  neighbors: 15
+  resolution: 0.5
+  min_cells_pseudobulk: 10
+  min_donors_per_group: 3
+  min_count: 10
+  min_samples_gene: 3
+  min_shared_genes: 100
+  spatial_k: 6
+  spatial_permutations: 199
+  bootstrap_replicates: 500
+  deconvolution: nnls
+  min_signature_coverage: 0.6
+  allow_unreviewed_annotations: true
+  allow_missing_pathology: true
+  threads: 1
+

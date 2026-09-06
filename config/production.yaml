@@ -1,0 +1,41 @@
+mode: real
+seed: 7301
+input_dir: data/processed
+output_dir: results/real
+contrast: [condition, TNBC, HRpos_HER2neg]
+# Modify prospectively, before viewing differential-expression results.
+# Do not include patient_id for a between-patient subtype comparison.
+design: "~ batch + condition"
+qc:
+  min_genes: 200
+  max_genes: 8000
+  max_mt_pct: 20
+  min_cells_per_gene: 3
+  min_cells_per_sample: 100
+  doublets: true
+  expected_doublet_rate: 0.06
+  min_spot_genes: 200
+  max_spot_mt_pct: 25
+analysis:
+  hvg: 3000
+  pcs: 40
+  neighbors: 15
+  resolution: 0.6
+  min_cells_pseudobulk: 30
+  min_donors_per_group: 4
+  min_count: 10
+  min_samples_gene: 4
+  min_shared_genes: 500
+  spatial_k: 6
+  spatial_permutations: 999
+  bootstrap_replicates: 2000
+  # Supply externally fitted, reviewed cell2location mean abundance table.
+  # scripts/cell2location_fit.py creates this file in a separate GPU environment.
+  deconvolution: external
+  abundance_file: data/processed/spatial_abundance.csv
+  abundance_method: cell2location_posterior_mean
+  min_signature_coverage: 0.6
+  allow_unreviewed_annotations: false
+  allow_missing_pathology: false
+  threads: 4
+
