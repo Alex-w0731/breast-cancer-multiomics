@@ -168,14 +168,24 @@ def run(cfg):
     fig, ax = plt.subplots(figsize=(11, 6))
     marker_genes = [x for x in sum(MARKERS.values(), []) if x in set(a.var.gene_symbol)]
     cell_types = sorted(a.obs.cell_type.astype(str).unique())
+    dots = []
     for i, ct in enumerate(cell_types):
         mask = a.obs.cell_type.eq(ct)
         for j, gene in enumerate(marker_genes):
             subset = a[mask, a.var.gene_symbol.eq(gene)].X
             mean = float(np.mean(dense(subset)))
             fraction = float(np.mean(dense(subset) > 0))
-            point = ax.scatter(j, i, s=90 * fraction + 1, c=[mean], cmap=CMAP, vmin=0,
-                               vmax=5, edgecolors="#777777", linewidths=.3)
+            dots.append((j, i, fraction, mean))
+    dots = np.asarray(dots)
+    point = ax.scatter(dots[:, 0], dots[:, 1], s=90 * dots[:, 2], c=dots[:, 3],
+                       cmap=CMAP, vmin=0, vmax=max(float(dots[:, 3].max()), 1e-6),
+                       edgecolors="#777777", linewidths=.3)
+    handles = [ax.scatter([], [], s=90 * fraction, color="#8DA9C8", edgecolors="#777777",
+                          linewidths=.3, label=f"{fraction:.0%}")
+               for fraction in [.25, .5, .75, 1.0]]
+    ax.legend(handles=handles, title="Fraction with detected expression", ncol=4,
+              loc="lower left", bbox_to_anchor=(0, 1.01), frameon=False,
+              fontsize=8, title_fontsize=8)
     fig.colorbar(point, ax=ax, label="Mean log1p(normalized counts)")
     ax.set(xticks=range(len(marker_genes)), xticklabels=marker_genes,
            yticks=range(len(cell_types)), yticklabels=cell_types)
@@ -274,14 +284,15 @@ def run(cfg):
         g.omissions.append({"id": "S21", "reason": "No evaluable paired pathology compartments / T_cell column"})
     intervals = pd.DataFrame(json.loads((root / "integration/spatial_patient_summary.json").read_text()))
     if not intervals.empty and intervals[["ci_low", "ci_high"]].notna().all().all():
-        fig, ax = plt.subplots(figsize=(8.5, 5.8))
+        fig, ax = plt.subplots(figsize=(9.5, max(4.0, 2.8 + .5 * len(intervals))))
         for i, row in intervals.iterrows():
-            ax.errorbar(row.mean_difference, i,
-                        xerr=[[row.mean_difference - row.ci_low], [row.ci_high - row.mean_difference]],
-                        fmt="o", color=COLORS[0], capsize=4)
+            ax.hlines(i, row.ci_low, row.ci_high, color=COLORS[0], lw=1.5)
+            ax.plot([row.ci_low, row.ci_high], [i, i], "|", color=COLORS[0], ms=8)
+            ax.plot(row.mean_difference, i, "o", color=COLORS[0])
         ax.axvline(0, color="#555555", ls="--", lw=.8)
         ax.set(yticks=range(len(intervals)), yticklabels=[f"{r.condition} (n={r.n_patients})"
-               for r in intervals.itertuples()], xlabel="Mean tumor minus stroma T-cell mixture weight")
+               for r in intervals.itertuples()], xlabel="Mean tumor minus stroma T-cell mixture weight",
+               ylim=(-.5, len(intervals) - .5))
         g.save(fig, "S22_patient_uncertainty", "Patient-level compartment differences",
                "95% percentile bootstrap intervals; resampling unit is patient, not spot",
                ["integration/spatial_patient_summary.json", "integration/patient_tcell_compartments.csv"])

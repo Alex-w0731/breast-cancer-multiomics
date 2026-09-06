@@ -2,7 +2,10 @@
 
 **SYNTHETIC DATA - SOFTWARE DEMO ONLY**
 
-Each PNG has matching editable SVG and vector PDF exports.
+This gallery contains 46 figures. Repository PNGs are 120 dpi browsing previews.
+The downloadable local delivery and successful GitHub Actions artifacts contain
+all 138 full exports: 300 dpi PNG, editable SVG and vector PDF for each figure.
+Rerunning the pipeline regenerates these exports in `results/demo/figures/`.
 
 ## F01_workflow — Three-modality analysis design
 

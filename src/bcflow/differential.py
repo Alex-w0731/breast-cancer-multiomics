@@ -10,7 +10,7 @@ from pydeseq2.dds import DeseqDataSet
 from pydeseq2.ds import DeseqStats
 from scipy import sparse
 
-from .core import audit, bh, mkdir, validate_counts, write_json
+from .core import audit, bh, mkdir, read_count_csv, validate_counts, write_json
 
 
 def aggregate(a, min_cells):
@@ -45,6 +45,10 @@ def aggregate(a, min_cells):
 
 
 def check_design(counts, meta, cfg):
+    key, test, control = cfg["contrast"]
+    for col in ["patient_id", key]:
+        if col not in meta or meta[col].isna().any() or meta[col].astype(str).str.strip().eq("").any():
+            raise ValueError(f"Missing or blank metadata: {col}")
     if not counts.index.is_unique or not counts.columns.is_unique or not meta.index.is_unique:
         raise ValueError("Duplicate sample/gene IDs")
     if not counts.index.equals(meta.index):
@@ -52,7 +56,6 @@ def check_design(counts, meta, cfg):
     if meta.patient_id.duplicated().any():
         raise ValueError("One independent observation per patient is required for this model")
     validate_counts(counts.to_numpy())
-    key, test, control = cfg["contrast"]
     if set(meta[key].astype(str)) != {test, control}:
         raise ValueError("Exactly the two prespecified contrast levels must be present")
     n = meta.groupby(key, observed=True).patient_id.nunique()
@@ -124,7 +127,7 @@ def pseudobulk(cfg):
 def bulk(cfg):
     inp = Path(cfg["input_dir"])
     out = mkdir(Path(cfg["output_dir"]) / "bulk")
-    counts = pd.read_csv(inp / "bulk_counts.csv", index_col=0)
+    counts = read_count_csv(inp / "bulk_counts.csv")
     md = pd.read_csv(inp / "bulk_metadata.csv", index_col=0)
     genes = pd.read_csv(inp / "bulk_genes.csv", index_col=0)
     if cfg["mode"] == "real" and "data_status" in md:

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import csv
 import importlib.metadata
 import json
 import platform
@@ -55,8 +56,29 @@ def sha256(path):
 
 
 def write_json(path, obj):
-    Path(path).write_text(json.dumps(obj, indent=2, ensure_ascii=False, default=str),
+    def clean(value):
+        if isinstance(value, dict):
+            return {str(key): clean(item) for key, item in value.items()}
+        if isinstance(value, (list, tuple, np.ndarray)):
+            return [clean(item) for item in value]
+        if isinstance(value, np.generic):
+            return clean(value.item())
+        if isinstance(value, float) and not np.isfinite(value):
+            return None
+        return value
+    Path(path).write_text(json.dumps(clean(obj), indent=2, ensure_ascii=False,
+                                     default=str, allow_nan=False),
                           encoding="utf-8")
+
+
+def read_count_csv(path):
+    # pandas renames duplicate CSV headers, which would otherwise conceal duplicate genes.
+    with open(path, encoding="utf-8-sig", newline="") as f:
+        header = next(csv.reader(f))
+    if len(header) < 2 or len(set(header[1:])) != len(header[1:]) or any(
+            not gene.strip() for gene in header[1:]):
+        raise ValueError("Duplicate or blank gene IDs in count CSV header")
+    return pd.read_csv(path, index_col=0)
 
 
 def validate_counts(x, name="counts"):

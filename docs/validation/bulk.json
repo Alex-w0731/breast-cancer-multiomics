@@ -1,6 +1,6 @@
 {
   "stage": "bulk",
-  "utc": "2026-09-05T21:09:01.135596+00:00",
+  "utc": "2026-09-06T02:07:10.337377+00:00",
   "mode": "demo",
   "seed": 7301,
   "config": {
@@ -68,11 +68,11 @@
   },
   "source_sha256": {
     "cli.py": "6b416bb2ffcc0323cb8486ec43fe8a9cbed3bd0b8da9d9a5d896c636e1f3dedb",
-    "core.py": "aa5a300eb9359e64a28758fbd97e3dfc4d5383e664b6a604f1b22fd3b806ae20",
+    "core.py": "97be04b3b85237a1f36bbe8e1dcd0b31e447716470a808016f5b2696e0353153",
     "demo.py": "1228ce280e84aa083a7cf39f35d3e452491935615b58d84e6860f39a50bcc979",
-    "differential.py": "dad1ea708d62331e1db4caa0a89540fbe97020b3fa4904db600cf39b27441ad2",
+    "differential.py": "5d65be103cf3367e582f51896421d4748f92d9de8dd3a36e19ef177afe793dcd",
     "download.py": "ed82cc0a2b83acecce9ed8b8935e29eedbf262c1380559fb91b6402f0e0887c4",
-    "figures.py": "bd7f29c0473ffcc40fa0ca1b1ae92abaa01a21fe07846f574961b0b241595a86",
+    "figures.py": "8f240370bd2044f1fc3728af3e0b5145c7108760d877465731913c4fbd6318e9",
     "integration.py": "9b39d4bf5f4e71d8d79c3c68d6853ca3e50e71f9ee100ed217c6b9ae2348769c",
     "singlecell.py": "396182bb3bbd82c1f1553cd930584e3643ae707373e746b4b60fe2cce5239f6b",
     "spatial.py": "c07943ea5ff81fef6b21eef7ef594683a30a7ded9ec75b68dd1f070d3cf4259b",

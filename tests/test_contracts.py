@@ -137,3 +137,27 @@ def test_ora_uses_tested_background():
     assert row.set_size_tested == 2
     assert row.overlap == 2
 
+
+def test_strict_json_preserves_missing_and_numpy_types(tmp_path):
+    import json
+    from bcflow.core import write_json
+    path = tmp_path / "audit.json"
+    write_json(path, {"ci": np.nan, "n": np.int64(3), "valid": np.bool_(True)})
+    content = path.read_text()
+    assert "NaN" not in content
+    assert json.loads(content) == {"ci": None, "n": 3, "valid": True}
+
+
+def test_duplicate_gene_csv_header_rejected(tmp_path):
+    from bcflow.core import read_count_csv
+    path = tmp_path / "counts.csv"
+    path.write_text(",geneA,geneA\nsample1,10,20\n")
+    with pytest.raises(ValueError, match="Duplicate"):
+        read_count_csv(path)
+
+
+def test_missing_patient_id_rejected():
+    counts, md, cfg = design_fixture()
+    md.loc["s0", "patient_id"] = None
+    with pytest.raises(ValueError, match="patient_id"):
+        check_design(counts, md, cfg)

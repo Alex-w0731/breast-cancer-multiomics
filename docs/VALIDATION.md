@@ -8,14 +8,21 @@ demonstration, not a validated real-patient scientific conclusion.**
 | Check | Observed result |
 |---|---|
 | Package installation | Editable installation with dev and workflow extras completed in isolated Python 3.12.14 on Windows |
-| Unit/statistical tests | 25 passed; 17 dependency deprecation/future warnings retained in the log |
+| Unit/statistical tests | 28 passed; 17 dependency deprecation/future warnings retained in the log |
 | Static checks | Ruff passed for src, tests and scripts |
 | CPU end-to-end workflow | demo-data → singlecell → pseudobulk → bulk → spatial → integrate → figures completed |
 | Demonstration size | 12 synthetic patients; 1,920 cells; 768 spots; 12 bulk samples; 800 genes |
 | Figure exports | 46 distinct figures × PNG/PDF/SVG = 138 main exports, plus web previews and contact sheet |
 | Public spatial metadata download | 217,533 bytes; publisher MD5 matched; six source metadata tables inspected |
-| GDC discovery | Live open TCGA-BRCA STAR-count discovery and pagination completed; no full expression cohort downloaded |
-| Snakemake | DAG dry-run completed locally; Linux scheduled execution is delegated to the included GitHub CI |
+| GDC discovery | Live open TCGA-BRCA STAR-count discovery returned 1,111 candidate files from 1,095 distinct patients; no full expression cohort downloaded |
+| Snakemake | DAG dry-run completed locally; the complete CPU DAG also executed successfully in GitHub CI on Ubuntu, with two cores |
+
+The first remote workflow passed installation, lint, tests, the complete Snakemake
+DAG and artifact upload: [GitHub Actions run 34005107787](https://github.com/Alex-w0731/breast-cancer-multiomics/actions/runs/34005107787),
+commit `50fdd9c402c13e1ee331e19f2119c1297bb939d5`. That baseline contained 25 tests;
+three additional input/serialization guards are included in the 28-test local result.
+GDC discovery recorded Data Release 46.0 (August 10, 2026); candidate counts are a
+dated API snapshot, not the number of clinically eligible independent samples.
 
 The final source and installed package versions are recorded alongside the audit
 JSON. `requirements-tested-windows.txt` is an environment inventory for the tested
@@ -25,6 +32,8 @@ are explicitly pinned in pyproject.toml. Linux CI installs these pins independen
 ## What the tests verify
 
 - Noninteger, negative, nonfinite and empty count matrices are rejected.
+- Duplicate CSV gene headers and missing patient IDs are rejected before model fitting;
+  nonfinite audit values serialize as JSON null instead of invalid NaN literals.
 - Synthetic AnnData is blocked from a real run.
 - Pseudobulk uses raw sums and conserves counts; technical/cell replication is not
   mistaken for patient replication; ambiguous cross-batch patients are rejected.
@@ -77,4 +86,3 @@ than treating successful process exit as sufficient evidence.
 These items block a publication claim about real biology, not distribution of the
 clearly labeled software and proposed experimental protocol. See the complete
 [publication checklist](publication_checklist.md) and [SAP](statistical_analysis_plan.md).
-
