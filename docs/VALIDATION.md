@@ -17,10 +17,13 @@ demonstration, not a validated real-patient scientific conclusion.**
 | GDC discovery | Live open TCGA-BRCA STAR-count discovery returned 1,111 candidate files from 1,095 distinct patients; no full expression cohort downloaded |
 | Snakemake | DAG dry-run completed locally; the complete CPU DAG also executed successfully in GitHub CI on Ubuntu, with two cores |
 
-The first remote workflow passed installation, lint, tests, the complete Snakemake
-DAG and artifact upload: [GitHub Actions run 34005107787](https://github.com/Alex-w0731/breast-cancer-multiomics/actions/runs/34005107787),
-commit `50fdd9c402c13e1ee331e19f2119c1297bb939d5`. That baseline contained 25 tests;
-three additional input/serialization guards are included in the 28-test local result.
+The final code passed installation, lint, all 28 tests, the complete Snakemake DAG
+and artifact upload: [GitHub Actions run 34005821215](https://github.com/Alex-w0731/breast-cancer-multiomics/actions/runs/34005821215),
+commit `03d2e1a4f1572f87c128b9f86d53f12973aed06a`. The full observed job/step
+summary is archived in [validation/github_ci.json](validation/github_ci.json).
+Download the full-resolution figures and audit files from that run's artifact;
+GitHub retains this configured CI artifact for 14 days. The supplied local ZIP
+preserves the exports, synthetic inputs, source tables and a SHA-256 file manifest.
 GDC discovery recorded Data Release 46.0 (August 10, 2026); candidate counts are a
 dated API snapshot, not the number of clinically eligible independent samples.
 
@@ -50,7 +53,9 @@ are explicitly pinned in pyproject.toml. Linux CI installs these pins independen
 
 The exported contact sheet was inspected for missing figures, illegible labels,
 incorrect coordinate orientation, inconsistent status labels and clipping. Individual
-full-size views are included in the gallery. All empirical-looking demo plots carry
+full-size views were reviewed locally; the repository gallery uses browsing previews.
+The marker dot plot includes a detection-fraction size legend and an observed color
+range; patient intervals are drawn from their actual endpoints. All empirical-looking demo plots carry
 SYNTHETIC DATA - SOFTWARE DEMO ONLY. The power plot is explicitly hypothetical.
 No image-generation model was used to invent histology or biological measurements.
 
